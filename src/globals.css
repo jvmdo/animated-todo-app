@@ -1,1 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-family: "Josefin Sans", system-ui, sans-serif;
+  --white: white;
+  --gray-50: hsl(0, 0%, 98%);
+  --gray-300: hsl(233, 11%, 84%);
+  --gray-600: hsl(236, 9%, 61%);
+  --purple-100: hsl(236, 33%, 92%);
+  --purple-300: hsl(234, 39%, 85%);
+  --purple-600: hsl(235, 16%, 43%);
+  --purple-700: hsl(233, 14%, 35%);
+  --purple-800: hsl(237, 14%, 26%);
+  --navy-850: hsl(235, 19%, 35%);
+  --navy-900: hsl(235, 24%, 19%);
+  --navy-950: hsl(235, 21%, 11%);
+  --blue-500: hsl(220, 98%, 61%);
+  --bg-gradient: linear-gradient(
+    to bottom right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  --primary: var(--navy-850);
+  --primary-foreground: var(--navy-850); /* hover */
+  --secondary: var(--gray-600);
+  --accent: var(--blue-500);
+  --muted: var(--purple-300);
+  --background: var(--gray-50);
+  --foreground: var(--white);
+  --border: var(--gray-300);
+  --shadow: var(--navy-850);
+  --gradient: var(--bg-gradient);
+  --bg-image: url(/public/images/bg-mobile-light.jpg);
+}
+
+.dark {
+  --primary: var(--purple-300);
+  --primary-foreground: var(--purple-100); /* hover */
+  --secondary: var(--purple-600);
+  --muted: var(--gray-600);
+  --background: var(--purple-800);
+  --foreground: var(--navy-900);
+  --border: var(--purple-700);
+  --shadow: var(--navy-950);
+  --bg-image: url(/public/images/bg-mobile-dark.jpg);
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --bg-image: url(/public/images/bg-desktop-light.jpg);
+  }
+
+  .dark {
+    --bg-image: url(/public/images/bg-desktop-dark.jpg);
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-family);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground); /* hover */
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-border: var(--border);
+  --color-shadow: var(--shadow);
+
+  --background-image-gradient: var(--bg-gradient);
+  --background-image-image: var(--bg-image);
+}

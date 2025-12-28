@@ -41,9 +41,9 @@ function App() {
   };
 
   return (
-    <>
+    <div className="bg-image bg-no-repeat bg-size-[100%_200px]">
       <header>
-        <h1>TODO</h1>
+        <h1 className="text-2xl">TODO</h1>
         <button>Moon</button>
       </header>
       <main>
@@ -57,10 +57,9 @@ function App() {
           onClearCompleted={handleClearCompleted}
         />
         <TodoFilters filter={filter} setFilter={handleChangeFilter} />
-        <p>Drag and drop to reorder list</p>
-        <div className="background"></div>
+        <p className="bg-gradient">Drag and drop to reorder list</p>
       </main>
-    </>
+    </div>
   );
 }
 
