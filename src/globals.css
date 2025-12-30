@@ -81,10 +81,23 @@
   html {
     background-color: var(--color-background);
     color: var(--color-primary);
+    transition: all 220ms ease;
   }
 
   body {
     font-size: 0.75rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    body {
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    body {
+      font-size: 1.125rem;
+    }
   }
 
   button:not(:disabled),

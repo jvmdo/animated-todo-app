@@ -1,9 +1,12 @@
-export function MoonIcon({ size = 20 }) {
+import type { ComponentProps } from "react";
+
+type IconProps = ComponentProps<"svg">;
+
+export function MoonIcon(props: IconProps) {
   return (
     <svg
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
       viewBox="0 0 26 26"
       fill="currentColor"
     >
@@ -15,12 +18,11 @@ export function MoonIcon({ size = 20 }) {
   );
 }
 
-export function SunIcon({ size = 20 }) {
+export function SunIcon(props: IconProps) {
   return (
     <svg
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
       viewBox="0 0 26 26"
       fill="currentColor"
     >
@@ -32,12 +34,11 @@ export function SunIcon({ size = 20 }) {
   );
 }
 
-export function CrossIcon({ size = 12 }) {
+export function CrossIcon(props: IconProps) {
   return (
     <svg
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
       viewBox="0 0 18 18"
       fill="currentColor"
     >
@@ -49,19 +50,12 @@ export function CrossIcon({ size = 12 }) {
   );
 }
 
-export function CheckIcon({ className = "", size = 10, color = "#fff" }) {
+export function CheckIcon(props: IconProps) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 11 9"
-      fill="none"
-      className={className}
-    >
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 9">
       <path
         fill="none"
-        stroke={color}
+        stroke="currentColor"
         strokeWidth="2"
         d="M1 4.304L3.696 7l6-6"
       />

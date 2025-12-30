@@ -11,9 +11,11 @@ function ThemeButton() {
     document.documentElement.classList.toggle("dark");
   };
 
+  const Icon = theme === "light" ? MoonIcon : SunIcon;
+
   return (
     <button className="text-white" onClick={handleThemeChange}>
-      {theme === "light" ? <MoonIcon /> : <SunIcon />}
+      <Icon className="size-5 md:size-6 lg:size-7" />
     </button>
   );
 }

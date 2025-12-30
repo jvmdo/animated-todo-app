@@ -42,28 +42,30 @@ function App() {
   };
 
   return (
-    <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-11 pb-6 px-6">
-      <header className="flex justify-between mb-8">
-        <h1 className="text-3xl font-bold text-white tracking-[0.5rem] uppercase">
-          Todo
-        </h1>
-        <ThemeButton />
-      </header>
-      <main>
-        <TodoInput onNewTodo={handleCreateTodo} />
-        <TodoItems
-          todos={todos}
-          filter={filter}
-          onDelete={handleDeleteTodo}
-          onCheck={handleCheckTodo}
-          onUncheck={handleUncheckTodo}
-          onClearCompleted={handleClearCompleted}
-        />
-        <TodoFilters filter={filter} setFilter={handleChangeFilter} />
-        <p className="mt-8 text-center text-secondary">
-          Drag and drop to reorder list
-        </p>
-      </main>
+    <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-11 pb-6 px-6 md:bg-size-[100%_300px] md:pt-16 lg:pt-19">
+      <div className="max-w-135 m-auto">
+        <header className="flex items-baseline justify-between mb-8 md:mb-10">
+          <h1 className="text-3xl font-bold text-white tracking-[0.5rem] uppercase md:text-4xl md:tracking-[0.75rem] lg:text-[40px] lg:tracking-[1rem]">
+            Todo
+          </h1>
+          <ThemeButton />
+        </header>
+        <main>
+          <TodoInput onNewTodo={handleCreateTodo} />
+          <TodoItems
+            todos={todos}
+            filter={filter}
+            onDelete={handleDeleteTodo}
+            onCheck={handleCheckTodo}
+            onUncheck={handleUncheckTodo}
+            onClearCompleted={handleClearCompleted}
+          />
+          <TodoFilters filter={filter} setFilter={handleChangeFilter} />
+          <p className="mt-8 text-center text-secondary">
+            Drag and drop to reorder list
+          </p>
+        </main>
+      </div>
     </div>
   );
 }
