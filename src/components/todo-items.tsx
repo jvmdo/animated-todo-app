@@ -22,7 +22,7 @@ function TodoItems({
   const itemsLeft = filteredTodos.filter((todo) => !todo.completed).length;
 
   return (
-    <div>
+    <div className="bg-foreground rounded-md shadow-xl mb-4">
       <ul>
         {filteredTodos.map((props) => {
           return (
@@ -32,9 +32,14 @@ function TodoItems({
           );
         })}
       </ul>
-      <div>
-        <p>{itemsLeft} items left</p>
-        <button onClick={onClearCompleted}>Clear Completed</button>
+      <div className="h-12 flex items-center justify-between px-5">
+        <p className="text-secondary">{itemsLeft} items left</p>
+        <button
+          className="hover:text-primary-foreground"
+          onClick={onClearCompleted}
+        >
+          Clear Completed
+        </button>
       </div>
     </div>
   );

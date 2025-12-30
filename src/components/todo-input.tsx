@@ -20,7 +20,7 @@ function TodoInput({ onNewTodo }: { onNewTodo: (todo: string) => void }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Field.Root>
+      <Field.Root className="relative mb-4">
         <Field.Control
           type="text"
           name="todo"
@@ -28,8 +28,10 @@ function TodoInput({ onNewTodo }: { onNewTodo: (todo: string) => void }) {
           required={true}
           value={value}
           onChange={(e) => setValue(e.currentTarget.value)}
+          className="bg-foreground w-full rounded-md h-12 pl-13 pr-3 py-3 caret-accent"
         />
         <Field.Error />
+        <span className="absolute top-1/2 -translate-y-1/2 left-5 w-5 h-5 border border-muted rounded-full" />
       </Field.Root>
     </Form>
   );

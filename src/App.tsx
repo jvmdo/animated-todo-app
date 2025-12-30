@@ -5,6 +5,7 @@ import TodoItems from "@/components/todo-items";
 import TodoFilters from "@/components/todo-filters";
 import { todoReducer } from "@/reducers";
 import { initialTodos } from "@/constants";
+import ThemeButton from "@/components/theme-button";
 
 export type TodoFilter = "all" | "active" | "completed";
 
@@ -41,10 +42,12 @@ function App() {
   };
 
   return (
-    <div className="bg-image bg-no-repeat bg-size-[100%_200px]">
-      <header>
-        <h1 className="text-2xl">TODO</h1>
-        <button>Moon</button>
+    <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-12 pb-6 px-6">
+      <header className="flex justify-between mb-8">
+        <h1 className="text-3xl font-bold text-white tracking-[0.5rem] uppercase">
+          Todo
+        </h1>
+        <ThemeButton />
       </header>
       <main>
         <TodoInput onNewTodo={handleCreateTodo} />
@@ -57,7 +60,9 @@ function App() {
           onClearCompleted={handleClearCompleted}
         />
         <TodoFilters filter={filter} setFilter={handleChangeFilter} />
-        <p className="bg-gradient">Drag and drop to reorder list</p>
+        <p className="mt-8 text-center text-secondary">
+          Drag and drop to reorder list
+        </p>
       </main>
     </div>
   );

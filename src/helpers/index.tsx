@@ -1,4 +1,5 @@
-import type { Todo, TodoFilter } from "@/App";
+import type { TodoFilter } from "@/App";
+import type { Todo } from "@/reducers";
 
 export function filterTodos(todo: Todo, filter: TodoFilter) {
   switch (filter) {

@@ -1,5 +1,7 @@
 import type { TodoFilter } from "@/App";
 
+const filters = ["all", "active", "completed"];
+
 function TodoFilters({
   filter,
   setFilter,
@@ -8,22 +10,21 @@ function TodoFilters({
   setFilter: (filter: TodoFilter) => void;
 }) {
   return (
-    <div>
-      <button onClick={() => setFilter("all")} disabled={filter === "all"}>
-        All
-      </button>
-      <button
-        onClick={() => setFilter("active")}
-        disabled={filter === "active"}
-      >
-        Active
-      </button>
-      <button
-        onClick={() => setFilter("completed")}
-        disabled={filter === "completed"}
-      >
-        Completed
-      </button>
+    <div className="h-12 bg-foreground flex items-center justify-center gap-5 rounded-md shadow-lg text-base font-bold">
+      {filters.map((label) => {
+        return (
+          <button
+            key={label}
+            onClick={() => setFilter(label as TodoFilter)}
+            disabled={label === filter}
+            className={`hover:not-disabled:text-primary capitalize ${
+              label === filter ? "text-accent" : ""
+            }`}
+          >
+            {label}
+          </button>
+        );
+      })}
     </div>
   );
 }

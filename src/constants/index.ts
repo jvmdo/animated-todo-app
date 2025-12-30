@@ -31,4 +31,10 @@ export const initialTodos: Todo[] = [
     content: "Complete Todo App on Frontend Mentor",
     completed: false,
   },
+  {
+    id: crypto.randomUUID(),
+    content:
+      "What happens if I can't check my Myspace when we get there? Tabs by Attack Attack!",
+    completed: false,
+  },
 ];
