@@ -24,13 +24,11 @@ function TodoItems({
   return (
     <div className="bg-foreground rounded-md shadow-xl mb-4">
       <ul>
-        {filteredTodos.map((props) => {
-          return (
-            <li key={props.id}>
-              <TodoItem {...props} {...delegated} />
-            </li>
-          );
-        })}
+        {filteredTodos.map((props) => (
+          <li key={props.id}>
+            <TodoItem {...props} {...delegated} />
+          </li>
+        ))}
       </ul>
       <div className="h-12 flex items-center justify-between px-5">
         <p className="text-secondary">{itemsLeft} items left</p>

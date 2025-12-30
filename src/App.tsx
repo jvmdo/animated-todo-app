@@ -42,7 +42,7 @@ function App() {
   };
 
   return (
-    <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-12 pb-6 px-6">
+    <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-11 pb-6 px-6">
       <header className="flex justify-between mb-8">
         <h1 className="text-3xl font-bold text-white tracking-[0.5rem] uppercase">
           Todo
