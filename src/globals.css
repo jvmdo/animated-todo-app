@@ -31,7 +31,6 @@
   --foreground: var(--white);
   --border: var(--purple-100);
   --shadow: hsl(from var(--navy-850) h s calc(l + 54));
-  --gradient: var(--bg-gradient);
   --bg-image: url(/public/images/bg-mobile-light.jpg);
 }
 
@@ -40,10 +39,10 @@
   --primary-foreground: var(--purple-100); /* hover */
   --secondary: var(--purple-600);
   --muted: var(--gray-600);
-  --background: var(--purple-800);
+  --background: var(--navy-950);
   --foreground: var(--navy-900);
-  --border: var(--purple-700);
-  --shadow: var(--navy-950);
+  --border: var(--purple-800);
+  --shadow: hsl(from var(--navy-950) h s calc(l - 1000));
   --bg-image: url(/public/images/bg-mobile-dark.jpg);
 }
 
@@ -71,8 +70,8 @@
 
   --color-border: var(--border);
 
-  --shadow-lg: 0 5px 15px -3px var(--shadow), 0 3px 5px -4px var(--shadow);
-  --shadow-xl: 0 10px 25px -5px var(--shadow), 0 8px 10px -6px var(--shadow);
+  --shadow-lg: 0 7px 15px -3px var(--shadow), 0 3px 5px -4px var(--shadow);
+  --shadow-xl: 0 15px 25px -5px var(--shadow), 0 8px 10px -6px var(--shadow);
 
   --background-image-gradient: var(--bg-gradient);
   --background-image-image: var(--bg-image);
@@ -114,7 +113,7 @@
 
 @utility checkbox-ring {
   border: 1px solid transparent;
-  background: linear-gradient(var(--white)) padding-box,
+  background: linear-gradient(var(--foreground)) padding-box,
     linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
       border-box;
 }

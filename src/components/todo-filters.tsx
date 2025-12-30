@@ -17,7 +17,7 @@ function TodoFilters({
             key={label}
             onClick={() => setFilter(label as TodoFilter)}
             disabled={label === filter}
-            className={`hover:not-disabled:text-primary capitalize ${
+            className={`hover:not-disabled:text-primary-foreground capitalize ${
               label === filter ? "text-accent" : ""
             }`}
           >

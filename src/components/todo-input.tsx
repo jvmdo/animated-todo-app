@@ -18,6 +18,7 @@ function TodoInput({ onNewTodo }: { onNewTodo: (todo: string) => void }) {
     setValue("");
   };
 
+  // TODO FIX: field error should be outflow and red
   return (
     <Form onSubmit={handleSubmit}>
       <Field.Root className="relative mb-4">
@@ -31,7 +32,7 @@ function TodoInput({ onNewTodo }: { onNewTodo: (todo: string) => void }) {
           className="bg-foreground w-full rounded-md h-12 pl-13 pr-3 py-3 caret-accent"
         />
         <Field.Error />
-        <span className="absolute top-1/2 -translate-y-1/2 left-5 w-5 h-5 border border-muted rounded-full" />
+        <span className="absolute top-1/2 -translate-y-1/2 left-5 w-5 h-5 border border-border rounded-full" />
       </Field.Root>
     </Form>
   );
