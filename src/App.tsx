@@ -2,12 +2,10 @@ import React from "react";
 
 import TodoInput from "@/components/todo-input";
 import TodoItems from "@/components/todo-items";
-import TodoFilters from "@/components/todo-filters";
 import { todoReducer } from "@/reducers";
 import { initialTodos } from "@/constants";
 import ThemeButton from "@/components/theme-button";
-
-export type TodoFilter = "all" | "active" | "completed";
+import TodoFilters, { type TodoFilter } from "@/components/todo-filters";
 
 function App() {
   const [todos, dispatch] = React.useReducer(todoReducer, initialTodos);
@@ -43,7 +41,7 @@ function App() {
 
   return (
     <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-11 pb-6 px-6 md:bg-size-[100%_300px] md:pt-16 lg:pt-19">
-      <div className="max-w-135 m-auto">
+      <div className="m-auto max-w-100 sm:max-w-120 md:max-w-135">
         <header className="flex items-baseline justify-between mb-8 md:mb-10">
           <h1 className="text-3xl font-bold text-white tracking-[0.5rem] uppercase md:text-4xl md:tracking-[0.75rem] lg:text-[40px] lg:tracking-[1rem]">
             Todo
@@ -52,16 +50,20 @@ function App() {
         </header>
         <main>
           <TodoInput onNewTodo={handleCreateTodo} />
-          <TodoItems
-            todos={todos}
-            filter={filter}
-            onDelete={handleDeleteTodo}
-            onCheck={handleCheckTodo}
-            onUncheck={handleUncheckTodo}
-            onClearCompleted={handleClearCompleted}
-          />
-          <TodoFilters filter={filter} setFilter={handleChangeFilter} />
-          <p className="mt-8 text-center text-secondary">
+          <div className="relative">
+            <TodoItems
+              todos={todos}
+              filter={filter}
+              onDelete={handleDeleteTodo}
+              onCheck={handleCheckTodo}
+              onUncheck={handleUncheckTodo}
+              onClearCompleted={handleClearCompleted}
+            />
+            <div className="md:absolute inset-x-0 bottom-0">
+              <TodoFilters filter={filter} setFilter={handleChangeFilter} />
+            </div>
+          </div>
+          <p className="mt-12 text-center text-secondary">
             Drag and drop to reorder list
           </p>
         </main>

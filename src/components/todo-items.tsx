@@ -1,7 +1,8 @@
-import type { TodoFilter } from "@/App";
+import type { Todo } from "@/reducers";
+import type { TodoFilter } from "@/components/todo-filters";
+
 import TodoItem from "@/components/todo-item";
 import { filterTodos } from "@/helpers";
-import type { Todo } from "@/reducers";
 
 export interface TodoItemsProps {
   todos: Todo[];
@@ -22,7 +23,7 @@ function TodoItems({
   const itemsLeft = filteredTodos.filter((todo) => !todo.completed).length;
 
   return (
-    <div className="bg-foreground rounded-md shadow-xl mb-4">
+    <div className="bg-foreground rounded-md shadow-xl mb-4 md:mb-0">
       <ul>
         {filteredTodos.map((props) => (
           <li key={props.id}>
@@ -30,10 +31,10 @@ function TodoItems({
           </li>
         ))}
       </ul>
-      <div className="h-12 flex items-center justify-between px-5">
-        <p className="text-secondary">{itemsLeft} items left</p>
+      <div className="h-12 flex items-center justify-between px-5 md:px-6 md:text-sm">
+        <p className="text-secondary md:z-10">{itemsLeft} items left</p>
         <button
-          className="hover:text-primary-foreground"
+          className="hover:text-primary-foreground md:z-10"
           onClick={onClearCompleted}
         >
           Clear Completed

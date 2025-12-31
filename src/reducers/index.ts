@@ -16,7 +16,7 @@ export function todoReducer(todos: Todo[], action: TodoAction) {
   return produce(todos, (draft) => {
     switch (action.type) {
       case "create": {
-        draft.push({
+        draft.unshift({
           id: action.id!,
           content: action.content!,
           completed: false,

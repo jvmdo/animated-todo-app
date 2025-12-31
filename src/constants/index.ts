@@ -1,5 +1,7 @@
 import type { Todo } from "@/reducers";
 
+export const filters = ["all", "active", "completed"] as const;
+
 export const initialTodos: Todo[] = [
   {
     id: crypto.randomUUID(),
@@ -13,8 +15,8 @@ export const initialTodos: Todo[] = [
   },
   {
     id: crypto.randomUUID(),
-    content: "10 minutes meditation",
-    completed: false,
+    content: "10 minutes stretching",
+    completed: true,
   },
   {
     id: crypto.randomUUID(),
@@ -29,7 +31,7 @@ export const initialTodos: Todo[] = [
   {
     id: crypto.randomUUID(),
     content: "Complete Todo App on Frontend Mentor",
-    completed: false,
+    completed: true,
   },
   {
     id: crypto.randomUUID(),
