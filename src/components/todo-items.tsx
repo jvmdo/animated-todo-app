@@ -8,6 +8,7 @@ import { extractStableReference, filterTodos } from "@/helpers";
 import { dragAndDrop } from "@formkit/drag-and-drop/react";
 import { GripVertical } from "@/components/icons";
 import { AnimatePresence, motion } from "motion/react";
+import { animations } from "@formkit/drag-and-drop";
 
 export interface TodoItemsProps {
   todos: Todo[];
@@ -47,13 +48,13 @@ function TodoItems({
         },
       ],
       dragHandle: "#grip",
-      // Only recognize visible items, ignore exiting animations,
-      // preventing "number of draggable items" warning.
-      // Needed because of AnimatePresence DOM manipulation
+      // Take account visible items only, preventing "number of draggable items" warning
+      // Needed because of AnimatePresence DOM manipulation during exiting animations
       draggable: (node) => {
         const validIds = new Set(visibleTodos.map((t) => t.id));
         return validIds.has(node.id);
       },
+      plugins: [animations()],
     });
   });
 
@@ -62,7 +63,9 @@ function TodoItems({
   }, [stableTodos]);
 
   React.useEffect(() => {
-    // Prevent snap scroll changes
+    // Put the scroll back to where it was before the list collapses,
+    // preventing snap scroll changes causes by shortened content.
+    // Since the list's height is animated, scroll feels smooth.
     const scrollY = window.scrollY;
     requestAnimationFrame(() => {
       window.scrollTo(0, scrollY);
@@ -77,12 +80,9 @@ function TodoItems({
             <motion.li
               key={props.id}
               id={props.id}
-              data-label={props.content}
-              layoutId={props.id}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
               className="relative"
             >
               {!isFiltering && (
