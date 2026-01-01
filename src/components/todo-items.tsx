@@ -47,14 +47,20 @@ function TodoItems({
           onSort(nextTodos);
         },
       ],
+      plugins: [animations()],
       dragHandle: "#grip",
+      draggingClass: "ghost",
+      dragPlaceholderClass: "dragging",
+      // Fix for bug where [.dragging] is not removed on drop
+      onDragend: ({ draggedNode }) => {
+        draggedNode.el.classList.remove("dragging");
+      },
       // Take account visible items only, preventing "number of draggable items" warning
       // Needed because of AnimatePresence DOM manipulation during exiting animations
       draggable: (node) => {
         const validIds = new Set(visibleTodos.map((t) => t.id));
         return validIds.has(node.id);
       },
-      plugins: [animations()],
     });
   });
 
@@ -83,7 +89,7 @@ function TodoItems({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="relative"
+              className="relative [&.ghost]:invisible [&.dragging]:bg-accent"
             >
               {!isFiltering && (
                 <GripVertical
