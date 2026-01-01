@@ -6,8 +6,8 @@ import type { TodoFilter } from "@/components/todo-filters";
 import TodoItem from "@/components/todo-item";
 import { extractStableReference, filterTodos } from "@/helpers";
 import { dragAndDrop } from "@formkit/drag-and-drop/react";
-import { animations } from "@formkit/drag-and-drop";
 import { GripVertical } from "@/components/icons";
+import { AnimatePresence, motion } from "motion/react";
 
 export interface TodoItemsProps {
   todos: Todo[];
@@ -47,7 +47,13 @@ function TodoItems({
         },
       ],
       dragHandle: "#grip",
-      plugins: [animations()],
+      // Only recognize visible items, ignore exiting animations,
+      // preventing "number of draggable items" warning.
+      // Needed because of AnimatePresence DOM manipulation
+      draggable: (node) => {
+        const validIds = new Set(visibleTodos.map((t) => t.id));
+        return validIds.has(node.id);
+      },
     });
   });
 
@@ -55,25 +61,40 @@ function TodoItems({
     attachTodosDnd();
   }, [stableTodos]);
 
+  React.useEffect(() => {
+    // Prevent snap scroll changes
+    const scrollY = window.scrollY;
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollY);
+    });
+  }, [visibleTodos]);
+
   return (
     <div className="bg-foreground rounded-md shadow-xl mb-4 md:mb-0">
       <ul ref={dndContainerRef}>
-        {visibleTodos.map((props) => (
-          <li
-            key={props.id}
-            id={props.id}
-            data-label={props.content}
-            className="relative"
-          >
-            {!isFiltering && (
-              <GripVertical
-                id="grip"
-                className="cursor-grab active:cursor-grabbing absolute top-1/2 -translate-1/2 left-4 size-5 md:left-5 md:size-6 lg:left-6"
-              />
-            )}
-            <TodoItem {...props} {...delegated} />
-          </li>
-        ))}
+        <AnimatePresence>
+          {visibleTodos.map((props) => (
+            <motion.li
+              key={props.id}
+              id={props.id}
+              data-label={props.content}
+              layoutId={props.id}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative"
+            >
+              {!isFiltering && (
+                <GripVertical
+                  id="grip"
+                  className="cursor-grab active:cursor-grabbing absolute top-1/2 -translate-1/2 left-4 size-5 md:left-5 md:size-6 lg:left-6"
+                />
+              )}
+              <TodoItem {...props} {...delegated} />
+            </motion.li>
+          ))}
+        </AnimatePresence>
       </ul>
       <div className="h-12 flex items-center justify-between px-5 md:px-6 md:text-sm">
         <p className="text-secondary md:z-10">{itemsLeft} items left</p>
