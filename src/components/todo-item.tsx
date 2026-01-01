@@ -18,7 +18,7 @@ function TodoItem({
   return (
     <Field.Root
       name="todo"
-      className="min-h-13 py-1 px-5 border-b border-border flex gap-3 group md:min-h-15 md:py-2 md:px-6 md:gap-4 lg:min-h-16 lg:gap-6"
+      className="min-h-13 py-1 pr-5 pl-8 border-b border-border flex gap-3 group md:min-h-15 md:py-2 md:pl-10 md:gap-4 lg:min-h-16 lg:gap-6 lg:pl-12"
     >
       <div className="self-center leading-0 relative group">
         <Field.Control

@@ -2,7 +2,7 @@ import React from "react";
 
 import TodoInput from "@/components/todo-input";
 import TodoItems from "@/components/todo-items";
-import { todoReducer } from "@/reducers";
+import { todoReducer, type Todo } from "@/reducers";
 import { initialTodos } from "@/constants";
 import ThemeButton from "@/components/theme-button";
 import TodoFilters, { type TodoFilter } from "@/components/todo-filters";
@@ -35,9 +35,15 @@ function App() {
     dispatch({ type: "clear_checked" });
   };
 
+  const handleSort = (todos: Todo[]) => {
+    dispatch({ type: "sort", todos });
+  };
+
   const handleChangeFilter = (filter: TodoFilter) => {
     setFilter(filter);
   };
+
+  // TODO: empty state UI
 
   return (
     <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-11 pb-6 px-6 md:bg-size-[100%_300px] md:pt-16 lg:pt-19">
@@ -54,6 +60,7 @@ function App() {
             <TodoItems
               todos={todos}
               filter={filter}
+              onSort={handleSort}
               onDelete={handleDeleteTodo}
               onCheck={handleCheckTodo}
               onUncheck={handleUncheckTodo}

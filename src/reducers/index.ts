@@ -7,9 +7,10 @@ export type Todo = {
 };
 
 export type TodoAction = {
-  type: "create" | "delete" | "check" | "uncheck" | "clear_checked";
+  type: "create" | "delete" | "check" | "uncheck" | "clear_checked" | "sort";
   id?: string;
   content?: string;
+  todos?: Todo[];
 };
 
 export function todoReducer(todos: Todo[], action: TodoAction) {
@@ -46,6 +47,10 @@ export function todoReducer(todos: Todo[], action: TodoAction) {
 
       case "clear_checked": {
         return draft.filter((todo) => !todo.completed);
+      }
+
+      case "sort": {
+        return action.todos;
       }
     }
   });
