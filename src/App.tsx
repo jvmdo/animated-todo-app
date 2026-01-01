@@ -43,7 +43,7 @@ function App() {
     setFilter(filter);
   };
 
-  // TODO: empty state UI
+  // TODO: extract logic into custom hooks
 
   return (
     <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-11 pb-6 px-6 md:bg-size-[100%_300px] md:pt-16 lg:pt-19">
@@ -56,23 +56,31 @@ function App() {
         </header>
         <main>
           <TodoInput onNewTodo={handleCreateTodo} />
-          <div className="relative">
-            <TodoItems
-              todos={todos}
-              filter={filter}
-              onSort={handleSort}
-              onDelete={handleDeleteTodo}
-              onCheck={handleCheckTodo}
-              onUncheck={handleUncheckTodo}
-              onClearCompleted={handleClearCompleted}
-            />
-            <div className="md:absolute inset-x-0 bottom-0">
-              <TodoFilters filter={filter} setFilter={handleChangeFilter} />
+          {todos.length > 0 && (
+            <div className="relative">
+              <TodoItems
+                todos={todos}
+                filter={filter}
+                onSort={handleSort}
+                onDelete={handleDeleteTodo}
+                onCheck={handleCheckTodo}
+                onUncheck={handleUncheckTodo}
+                onClearCompleted={handleClearCompleted}
+              />
+              <div className="md:absolute inset-x-0 bottom-0">
+                <TodoFilters filter={filter} setFilter={handleChangeFilter} />
+              </div>
             </div>
+          )}
+          <div className="mt-12 text-center ">
+            {todos.length > 0 ? (
+              <p className="text-secondary">"Drag and drop to reorder list"</p>
+            ) : (
+              <p className="text-primary md:text-white">
+                Start by entering your first TODO in the box above
+              </p>
+            )}
           </div>
-          <p className="mt-12 text-center text-secondary">
-            Drag and drop to reorder list
-          </p>
         </main>
       </div>
     </div>
