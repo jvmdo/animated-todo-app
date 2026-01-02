@@ -1,7 +1,7 @@
 import React from "react";
 
-import type { Todo } from "@/reducers";
 import type { TodoFilter } from "@/components/todo-filters";
+import type { Todo } from "@/hooks/use-todos";
 
 import TodoItem from "@/components/todo-item";
 import { extractStableReference, filterTodos } from "@/helpers";

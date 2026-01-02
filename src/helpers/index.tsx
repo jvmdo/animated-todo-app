@@ -1,5 +1,5 @@
 import type { TodoFilter } from "@/components/todo-filters";
-import type { Todo } from "@/reducers";
+import type { Todo } from "@/hooks/use-todos";
 
 export function extractStableReference(todos: Todo[]) {
   return JSON.stringify(todos);

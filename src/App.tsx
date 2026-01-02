@@ -1,43 +1,14 @@
 import React from "react";
 
-import TodoInput from "@/components/todo-input";
-import TodoItems from "@/components/todo-items";
-import { todoReducer, type Todo } from "@/reducers";
-import { initialTodos } from "@/constants";
 import ThemeButton from "@/components/theme-button";
 import TodoFilters, { type TodoFilter } from "@/components/todo-filters";
+import TodoInput from "@/components/todo-input";
+import TodoItems from "@/components/todo-items";
+import { useTodos } from "@/hooks/use-todos";
 
 function App() {
-  const [todos, dispatch] = React.useReducer(todoReducer, initialTodos);
+  const [todos, actions] = useTodos();
   const [filter, setFilter] = React.useState<TodoFilter>("all");
-
-  const handleCreateTodo = (todo: string) => {
-    dispatch({
-      type: "create",
-      id: crypto.randomUUID(),
-      content: todo,
-    });
-  };
-
-  const handleDeleteTodo = (id: string) => {
-    dispatch({ type: "delete", id });
-  };
-
-  const handleCheckTodo = (id: string) => {
-    dispatch({ type: "check", id });
-  };
-
-  const handleUncheckTodo = (id: string) => {
-    dispatch({ type: "uncheck", id });
-  };
-
-  const handleClearCompleted = () => {
-    dispatch({ type: "clear_checked" });
-  };
-
-  const handleSort = (todos: Todo[]) => {
-    dispatch({ type: "sort", todos });
-  };
 
   const handleChangeFilter = (filter: TodoFilter) => {
     setFilter(filter);
@@ -55,17 +26,17 @@ function App() {
           <ThemeButton />
         </header>
         <main>
-          <TodoInput onNewTodo={handleCreateTodo} />
+          <TodoInput onNewTodo={actions.insertTodo} />
           {todos.length > 0 && (
             <div className="relative">
               <TodoItems
                 todos={todos}
                 filter={filter}
-                onSort={handleSort}
-                onDelete={handleDeleteTodo}
-                onCheck={handleCheckTodo}
-                onUncheck={handleUncheckTodo}
-                onClearCompleted={handleClearCompleted}
+                onSort={actions.sortTodos}
+                onDelete={actions.removeTodo}
+                onCheck={actions.checkTodo}
+                onUncheck={actions.uncheckTodo}
+                onClearCompleted={actions.clearCompletedTodos}
               />
               <div className="md:absolute inset-x-0 bottom-0">
                 <TodoFilters filter={filter} setFilter={handleChangeFilter} />

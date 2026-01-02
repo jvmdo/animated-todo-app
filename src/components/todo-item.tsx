@@ -1,7 +1,7 @@
-import { CheckIcon, CrossIcon } from "@/components/icons";
 import type { TodoItemsProps } from "@/components/todo-items";
-import type { Todo } from "@/reducers";
+import type { Todo } from "@/hooks/use-todos";
 
+import { CheckIcon, CrossIcon } from "@/components/icons";
 import { Field } from "@base-ui/react/field";
 
 type TodoItemProps = Todo &
