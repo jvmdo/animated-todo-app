@@ -10,12 +10,6 @@ function App() {
   const [todos, actions] = useTodos();
   const [filter, setFilter] = React.useState<TodoFilter>("all");
 
-  const handleChangeFilter = (filter: TodoFilter) => {
-    setFilter(filter);
-  };
-
-  // TODO: extract logic into custom hooks
-
   return (
     <div className="bg-image bg-no-repeat bg-size-[100%_200px] pt-11 pb-6 px-6 md:bg-size-[100%_300px] md:pt-16 lg:pt-19">
       <div className="m-auto max-w-100 sm:max-w-120 md:max-w-135">
@@ -39,13 +33,13 @@ function App() {
                 onClearCompleted={actions.clearCompletedTodos}
               />
               <div className="md:absolute inset-x-0 bottom-0">
-                <TodoFilters filter={filter} setFilter={handleChangeFilter} />
+                <TodoFilters filter={filter} setFilter={setFilter} />
               </div>
             </div>
           )}
           <div className="mt-12 text-center ">
             {todos.length > 0 ? (
-              <p className="text-secondary">"Drag and drop to reorder list"</p>
+              <p className="text-secondary">Drag and drop to reorder list</p>
             ) : (
               <p className="text-primary md:text-white">
                 Start by entering your first TODO in the box above

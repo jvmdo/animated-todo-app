@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -31,7 +30,7 @@
   --foreground: var(--white);
   --border: var(--purple-100);
   --shadow: hsl(from var(--navy-850) h s calc(l + 54));
-  --bg-image: url(/public/images/bg-mobile-light.jpg);
+  --bg-image: url(/images/bg-mobile-light.jpg);
 }
 
 .dark {
@@ -43,16 +42,16 @@
   --foreground: var(--navy-900);
   --border: var(--purple-800);
   --shadow: hsl(from var(--navy-950) h s calc(l - 1000));
-  --bg-image: url(/public/images/bg-mobile-dark.jpg);
+  --bg-image: url(/images/bg-mobile-dark.jpg);
 }
 
 @media screen and (min-width: 768px) {
   :root {
-    --bg-image: url(/public/images/bg-desktop-light.jpg);
+    --bg-image: url(/images/bg-desktop-light.jpg);
   }
 
   .dark {
-    --bg-image: url(/public/images/bg-desktop-dark.jpg);
+    --bg-image: url(/images/bg-desktop-dark.jpg);
   }
 }
 
@@ -81,6 +80,7 @@
   html {
     background-color: var(--color-background);
     color: var(--color-primary);
+    font-optical-sizing: auto;
     transition: all 220ms ease;
   }
 

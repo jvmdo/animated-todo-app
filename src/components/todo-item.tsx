@@ -36,7 +36,7 @@ function TodoItem({
       </Field.Label>
       <button
         type="button"
-        className="self-center hover:text-red-400 invisible group-hover:visible group-focus-within:visible"
+        className="self-center hover:text-red-400 invisible group-hover:visible group-focus-within:visible pointer-coarse:visible"
         onClick={() => onDelete(id)}
       >
         <CrossIcon className="size-3 md:size-4 lg:size-5" />
